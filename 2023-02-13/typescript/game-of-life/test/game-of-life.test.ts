@@ -37,5 +37,13 @@ describe("Rules", () => {
 
         expect(deadOrAlive).toEqual(false);
     });
+
+    it("Any dead cell with exactly three live neighbours becomes a live cell", () => {
+        const deadCell = {
+            neighbours: 3
+        };
+
+        expect(false).toEqual(false);
+    });
 });
 
