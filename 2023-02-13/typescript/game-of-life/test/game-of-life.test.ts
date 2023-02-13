@@ -14,31 +14,31 @@ function isDeadBecomingAlive(neighbours: number) {
     return neighbours === 3;
 }
 
-function checkCellLifeStatus(cell: Cell) {
+function isAliveInNextStep(cell: Cell): boolean {
     return isAliveStayingAlive(cell.neighbours);
 }
 
 describe("Cell behaviour", () => {
-    it("A living cell with only one neighbour dies", () => {
+    it("A living cell with two neighbour lives on", () => {
         const liveCell: Cell = {
-            neighbours: 1,
+            neighbours: 2,
             isAlive: true
         };
 
-        const alive = checkCellLifeStatus(liveCell);
+        const alive = isAliveInNextStep(liveCell);
 
-        expect(alive).toEqual(false);
+        expect(alive).toEqual(true);
     });
 
-    it("A dead cell with only one neighbour stays dead", () => {
+    it("A dead cell with only two neighbours stays dead", () => {
         const deadCell: Cell = {
-            neighbours: 1,
+            neighbours: 2,
             isAlive: false
         };
 
-        const dead = checkCellLifeStatus(deadCell);
+        const alive = isAliveInNextStep(deadCell);
 
-        expect(dead).toEqual(true);
+        expect(alive).toEqual(false);
     });
 })
 
@@ -74,7 +74,7 @@ describe("Rules", () => {
 
     it("Any dead cell without three live neighbours stays dead", () => {
         const neighbours = 2;
-            
+
         const alive = isDeadBecomingAlive(neighbours);
 
         expect(alive).toEqual(false);
