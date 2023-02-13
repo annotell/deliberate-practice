@@ -1,7 +1,7 @@
 import {describe, expect, it} from "vitest";
 
-function isDeadOrAlive(_cell: { neighbours: number }) {
-    return false;
+function isDeadOrAlive(cell: { neighbours: number }) {
+    return cell.neighbours >= 2;
 }
 
 describe("Rules", () => {
@@ -23,6 +23,16 @@ describe("Rules", () => {
         const deadOrAlive = isDeadOrAlive(liveCell);
 
         expect(deadOrAlive).toEqual(true);
+    });
+
+    it("Any live cell with more than three live neighbours dies", () => {
+        const liveCell = {
+            neighbours: 4
+        };
+
+        const deadOrAlive = isDeadOrAlive(liveCell);
+
+        expect(deadOrAlive).toEqual(false);
     });
 });
 
