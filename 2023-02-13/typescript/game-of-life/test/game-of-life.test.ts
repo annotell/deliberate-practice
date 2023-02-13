@@ -14,6 +14,19 @@ function isDeadBecomingAlive(neighbours: number) {
     return neighbours === 3;
 }
 
+describe("Cell behaviour", () => {
+    it("A living cell with only one neighbour", () => {
+        const liveCell: Cell = {
+            neighbours: 1,
+            isAlive: true
+        };
+
+        const alive = checkCellLifeStatus(liveCell);
+
+        expect(alive).toEqual(false);
+    });
+})
+
 describe("Rules", () => {
     it("Live cell with fewer than two neighbours dies", () => {
         const liveCell: Cell = {
@@ -21,7 +34,7 @@ describe("Rules", () => {
             isAlive: false
         };
 
-        const alive = isAliveStayingAlive(liveCell);
+        const alive = isAliveStayingAlive(liveCell.neighbours);
 
         expect(alive).toEqual(false);
     });
@@ -32,7 +45,7 @@ describe("Rules", () => {
             isAlive: false
         };
 
-        const alive = isAliveStayingAlive(liveCell);
+        const alive = isAliveStayingAlive(liveCell.neighbours);
 
         expect(alive).toEqual(true);
     });
@@ -44,7 +57,7 @@ describe("Rules", () => {
             isAlive: false
         };
 
-        const alive = isAliveStayingAlive(liveCell);
+        const alive = isAliveStayingAlive(liveCell.neighbours);
 
         expect(alive).toEqual(false);
     });
@@ -55,7 +68,7 @@ describe("Rules", () => {
             isAlive: false
         };
 
-        const alive = isDeadBecomingAlive(deadCell);
+        const alive = isDeadBecomingAlive(deadCell.neighbours);
 
         expect(alive).toEqual(true);
     });
@@ -66,7 +79,7 @@ describe("Rules", () => {
             isAlive: false
         };
 
-        const alive = isDeadBecomingAlive(deadCell);
+        const alive = isDeadBecomingAlive(deadCell.neighbours);
 
         expect(alive).toEqual(false);
     });
