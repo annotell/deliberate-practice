@@ -9,13 +9,13 @@ type DeadCell = {
 }
 
 function isAlive(aliveCell: AliveCell): boolean {
-    if(aliveCell.neighbours == 2 || aliveCell.neighbours == 3)
+    if(aliveCell.neighbours === 2 || aliveCell.neighbours === 3)
         return true;
     return false;
 }
 
 function isDeadBecomingAlive(deadCell: DeadCell) {
-    return true;
+    return deadCell.neighbours === 3;
 }
 
 describe("Rules", () => {
