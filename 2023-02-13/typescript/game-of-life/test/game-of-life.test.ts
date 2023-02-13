@@ -1,9 +1,21 @@
 import {describe, expect, it} from "vitest";
 
-function isAlive(cell: { neighbours: number }): boolean {
-    if(cell.neighbours == 2 || cell.neighbours == 3)
+type AliveCell = {
+    neighbours: number
+}
+
+type DeadCell = {
+    neighbours: number
+}
+
+function isAlive(aliveCell: AliveCell): boolean {
+    if(aliveCell.neighbours == 2 || aliveCell.neighbours == 3)
         return true;
     return false;
+}
+
+function isDeadBecomingAlive(deadCell: DeadCell) {
+    return true;
 }
 
 describe("Rules", () => {
@@ -46,6 +58,16 @@ describe("Rules", () => {
         const alive = isDeadBecomingAlive(deadCell);
 
         expect(alive).toEqual(true);
+    });
+
+    it("Any dead cell without three live neighbours stays dead", () => {
+        const deadCell = {
+            neighbours: 2
+        };
+
+        const alive = isDeadBecomingAlive(deadCell);
+
+        expect(alive).toEqual(false);
     });
 });
 
