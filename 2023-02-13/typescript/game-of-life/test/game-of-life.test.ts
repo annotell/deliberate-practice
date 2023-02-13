@@ -43,7 +43,9 @@ describe("Rules", () => {
             neighbours: 3
         };
 
-        expect(false).toEqual(false);
+        const alive = isDeadBecomingAlive(deadCell);
+
+        expect(alive).toEqual(true);
     });
 });
 
