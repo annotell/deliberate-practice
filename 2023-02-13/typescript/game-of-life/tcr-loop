@@ -2,6 +2,7 @@
 echo "test-commit-revert. Press CTRL+C to stop..."
 for (( ; ; ))
 do
+    clear
     echo "checking..."
     ./tcr
     sleep 1
