@@ -8,10 +8,9 @@ type DeadCell = {
     neighbours: number
 }
 
-function isAlive(aliveCell: AliveCell): boolean {
-    if(aliveCell.neighbours === 2 || aliveCell.neighbours === 3)
-        return true;
-    return false;
+function isAliveStayingAlive(aliveCell: AliveCell): boolean {
+    return aliveCell.neighbours === 2 || aliveCell.neighbours === 3;
+
 }
 
 function isDeadBecomingAlive(deadCell: DeadCell) {
@@ -24,9 +23,9 @@ describe("Rules", () => {
             neighbours: 1
         };
 
-        const deadOrAlive = isAlive(liveCell);
+        const alive = isAliveStayingAlive(liveCell);
 
-        expect(deadOrAlive).toEqual(false);
+        expect(alive).toEqual(false);
     });
 
     it.each([2, 3])("Any live cell with two or three live neighbours lives", (neighbours: number) => {
@@ -34,9 +33,9 @@ describe("Rules", () => {
             neighbours: neighbours
         };
 
-        const deadOrAlive = isAlive(liveCell);
+        const alive = isAliveStayingAlive(liveCell);
 
-        expect(deadOrAlive).toEqual(true);
+        expect(alive).toEqual(true);
     });
 
 
@@ -45,9 +44,9 @@ describe("Rules", () => {
             neighbours: neighbours
         };
 
-        const deadOrAlive = isAlive(liveCell);
+        const alive = isAliveStayingAlive(liveCell);
 
-        expect(deadOrAlive).toEqual(false);
+        expect(alive).toEqual(false);
     });
 
     it("Any dead cell with exactly three live neighbours becomes a live cell", () => {
@@ -60,7 +59,7 @@ describe("Rules", () => {
         expect(alive).toEqual(true);
     });
 
-    it.skip("Any dead cell without three live neighbours stays dead", () => {
+    it("Any dead cell without three live neighbours stays dead", () => {
         const deadCell = {
             neighbours: 2
         };
