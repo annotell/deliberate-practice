@@ -17,9 +17,9 @@ describe("Rules", () => {
         expect(deadOrAlive).toEqual(false);
     });
 
-    it("Any live cell with two or three live neighbours lives on to the next generation.", () => {
+    it.each([2, 3])("Any live cell with two or three live neighbours lives", (neighbours: number) => {
         const liveCell = {
-            neighbours: 2
+            neighbours: neighbours
         };
 
         const deadOrAlive = isAlive(liveCell);
