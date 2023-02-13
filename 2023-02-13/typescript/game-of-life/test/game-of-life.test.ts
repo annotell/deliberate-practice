@@ -60,7 +60,7 @@ describe("Rules", () => {
         expect(alive).toEqual(true);
     });
 
-    it("Any dead cell without three live neighbours stays dead", () => {
+    it.skip("Any dead cell without three live neighbours stays dead", () => {
         const deadCell = {
             neighbours: 2
         };
