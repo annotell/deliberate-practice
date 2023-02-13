@@ -1,9 +1,9 @@
 import {describe, expect, it} from "vitest";
 
-function isDeadOrAlive(cell: { neighbours: number }) {
-    if(cell.neighbours == 4)
-        return false;
-    return cell.neighbours >= 2;
+function isAlive(cell: { neighbours: number }): boolean {
+    if(cell.neighbours == 2 || cell.neighbours == 3)
+        return true;
+    return false;
 }
 
 describe("Rules", () => {
@@ -12,7 +12,7 @@ describe("Rules", () => {
             neighbours: 1
         };
 
-        const deadOrAlive = isDeadOrAlive(liveCell);
+        const deadOrAlive = isAlive(liveCell);
 
         expect(deadOrAlive).toEqual(false);
     });
@@ -22,7 +22,7 @@ describe("Rules", () => {
             neighbours: 2
         };
 
-        const deadOrAlive = isDeadOrAlive(liveCell);
+        const deadOrAlive = isAlive(liveCell);
 
         expect(deadOrAlive).toEqual(true);
     });
@@ -33,7 +33,7 @@ describe("Rules", () => {
             neighbours: neighbours
         };
 
-        const deadOrAlive = isDeadOrAlive(liveCell);
+        const deadOrAlive = isAlive(liveCell);
 
         expect(deadOrAlive).toEqual(false);
     });
