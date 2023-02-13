@@ -15,7 +15,8 @@ function isDeadBecomingAlive(neighbours: number) {
 }
 
 function isAliveInNextStep(cell: Cell): boolean {
-    return isAliveStayingAlive(cell.neighbours);
+    const { isAlive, neighbours } = cell;
+    return isAlive ? isAliveStayingAlive(neighbours) : isDeadBecomingAlive(neighbours);
 }
 
 describe("Cell behaviour", () => {
@@ -30,7 +31,7 @@ describe("Cell behaviour", () => {
         expect(alive).toEqual(true);
     });
 
-    it("A dead cell with only two neighbours stays dead", () => {
+    it("A dead cell with two neighbours stays dead", () => {
         const deadCell: Cell = {
             neighbours: 2,
             isAlive: false
