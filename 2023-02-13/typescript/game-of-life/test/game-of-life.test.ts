@@ -29,6 +29,17 @@ describe("Cell behaviour", () => {
 
         expect(alive).toEqual(false);
     });
+
+    it("A dead cell with only one neighbour stays dead", () => {
+        const deadCell: Cell = {
+            neighbours: 1,
+            isAlive: false
+        };
+
+        const dead = checkCellLifeStatus(deadCell);
+
+        expect(dead).toEqual(true);
+    });
 })
 
 describe("Rules", () => {
