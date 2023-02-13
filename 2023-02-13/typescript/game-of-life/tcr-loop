@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "test-commit-revert. Press CTRL+C to stop..."
+for (( ; ; ))
+do
+    echo "checking..."
+    ./tcr
+    sleep 1
+done
+
+
