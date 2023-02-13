@@ -4,10 +4,6 @@ type AliveCell = {
     neighbours: number
 }
 
-type DeadCell = {
-    neighbours: number
-}
-
 function isAliveStayingAlive(aliveCell: AliveCell): boolean {
     return aliveCell.neighbours === 2 || aliveCell.neighbours === 3;
 
