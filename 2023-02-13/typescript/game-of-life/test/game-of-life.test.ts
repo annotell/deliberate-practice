@@ -5,7 +5,8 @@ type Cell = {
     isAlive: boolean
 };
 
-type Grid = {  
+type Grid = {
+    grid: string
 };
 
 function isAliveStayingAlive(neighbours: number): boolean {
@@ -22,20 +23,29 @@ function isAliveInNextStep(cell: Cell): boolean {
 };
 
 function parseInput(input: string): Grid {
-    return {} as Grid;
+    return {grid: input} as Grid;
 };
 
 function simulateStep(grid: Grid): Grid {
     return grid;
 };
 
-function printGrid(grid: Grid): string { 
+function printGrid(grid: Grid): string {
+    return grid.grid;
     return (
         `
         ...
         .*.
         `);
 };
+
+describe("Simulate", () => {
+    it("One cell one step", () => {
+        const grid = parseInput("*")
+        const nextGrid = simulateStep(grid)
+        expect(printGrid(nextGrid)).toMatchSnapshot()
+    });
+});
 
 describe("Grid", () => {
     it("Parsing initial state", () => {
@@ -44,6 +54,14 @@ describe("Grid", () => {
         ...
         .*.
         `;
+
+        const grid = parseInput(initialState);
+
+        expect(printGrid(grid)).matchSnapshot();
+    });
+
+    it("Parses 1x1 grid", () => {
+        const initialState: string = `*`;
 
         const grid = parseInput(initialState);
 
@@ -63,13 +81,6 @@ describe("Grid", () => {
         expect(nextGrid).matchSnapshot();
     });
 
-    it("Parses 1x1 grid", () => {
-        const initialState: string = `*`;
-
-        const grid = parseInput(initialState);
-
-        expect(printGrid(grid)).matchSnapshot();
-    });
 });
 
 
