@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "tsc && vitest"
+    "test": "tsc && rm test/*.js && vitest --run"
   },
   "author": "",
   "license": "ISC",
