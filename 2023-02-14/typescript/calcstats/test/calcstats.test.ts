@@ -11,5 +11,5 @@ describe("Calculate statistics", () => {
     it("can find minimum of list", () => {
         expect(calcMin([1, 2, 3, 0])).toEqual(0);
         expect(calcMin([1, 2, 3])).toEqual(1);
-    })
+    });
 });
