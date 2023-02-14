@@ -1,7 +1,11 @@
 import {describe, expect, it} from "vitest";
 
+function calcMin(numbers: number[]) {
+    return 0;
+}
+
 describe("Calculate statistics", () => {
-    it("1", () => {
-        expect(1).toEqual(1);
+    it("can find minimum of list", () => {
+        expect(calcMin([1, 2, 3, 0])).toEqual(0);
     })
 });
