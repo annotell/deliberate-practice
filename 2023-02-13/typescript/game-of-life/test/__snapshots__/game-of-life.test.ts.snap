@@ -6,3 +6,10 @@ exports[`Grid > Parsing initial state 1`] = `
         .*.
         "
 `;
+
+exports[`Grid > Simulate one step 1`] = `
+"
+        ...
+        ...
+        "
+`;

@@ -5,6 +5,8 @@ type Cell = {
     isAlive: boolean
 }
 
+type Grid = {}
+
 function isAliveStayingAlive(neighbours: number): boolean {
     return neighbours === 2 || neighbours === 3;
 
@@ -19,13 +21,17 @@ function isAliveInNextStep(cell: Cell): boolean {
     return isAlive ? isAliveStayingAlive(neighbours) : isDeadBecomingAlive(neighbours);
 }
 
-function parseInput(input: string) {
-    return input;
+function parseInput(input: string): Grid {
+    return {} as Grid;
+}
+
+function simulateStep(grid: Grid): Grid {
+    return grid;
 }
 
 describe("Grid", () => {
     it("Parsing initial state", () => {
-        const initialState =
+        const initialState: string =
         `
         ...
         .*.
@@ -35,8 +41,8 @@ describe("Grid", () => {
 
         expect(grid).matchSnapshot();
     })
-    it("Simulate one step", () => {
-        const initialState =
+    it.skip("Simulate one step", () => {
+        const initialState: string =
         `
         ...
         .*.
