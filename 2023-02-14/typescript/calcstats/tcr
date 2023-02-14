@@ -1,1 +1,1 @@
-npm run test -- --run && git commit -am 'tcr' || git checkout .
+npm test -- --run && git commit -am 'tcr' || git checkout .
