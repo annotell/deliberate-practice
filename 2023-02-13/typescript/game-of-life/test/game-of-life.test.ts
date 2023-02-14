@@ -19,9 +19,13 @@ function isAliveInNextStep(cell: Cell): boolean {
     return isAlive ? isAliveStayingAlive(neighbours) : isDeadBecomingAlive(neighbours);
 }
 
+function parseInput(input: string) {
+    return input;
+}
+
 describe("Grid", () => {
     it("Parsing initial state", () => {
-        const initialState = 
+        const initialState =
         `
         ...
         .*.
@@ -30,6 +34,18 @@ describe("Grid", () => {
         const grid = parseInput(initialState);
 
         expect(grid).matchSnapshot();
+    })
+    it("Simulate one step", () => {
+        const initialState =
+        `
+        ...
+        .*.
+        `;
+
+        const grid = parseInput(initialState);
+        const nextGrid = simulateStep(grid);
+
+        expect(nextGrid).matchSnapshot();
     })
 });
 
