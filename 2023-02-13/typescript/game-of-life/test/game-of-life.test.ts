@@ -3,31 +3,39 @@ import {describe, expect, it} from "vitest";
 type Cell = {
     neighbours: number
     isAlive: boolean
-}
+};
 
-type Grid = {}
+type Grid = {  
+};
 
 function isAliveStayingAlive(neighbours: number): boolean {
     return neighbours === 2 || neighbours === 3;
-
-}
+};
 
 function isDeadBecomingAlive(neighbours: number) {
     return neighbours === 3;
-}
+};
 
 function isAliveInNextStep(cell: Cell): boolean {
     const { isAlive, neighbours } = cell;
     return isAlive ? isAliveStayingAlive(neighbours) : isDeadBecomingAlive(neighbours);
-}
+};
 
 function parseInput(input: string): Grid {
     return {} as Grid;
-}
+};
 
 function simulateStep(grid: Grid): Grid {
     return grid;
-}
+};
+
+function printGrid(grid: Grid): string { 
+    return (
+        `
+        ...
+        .*.
+        `);
+};
 
 describe("Grid", () => {
     it("Parsing initial state", () => {
@@ -39,8 +47,9 @@ describe("Grid", () => {
 
         const grid = parseInput(initialState);
 
-        expect(grid).matchSnapshot();
-    })
+        expect(printGrid(grid)).matchSnapshot();
+    });
+
     it.skip("Simulate one step", () => {
         const initialState: string =
         `
@@ -52,7 +61,15 @@ describe("Grid", () => {
         const nextGrid = simulateStep(grid);
 
         expect(nextGrid).matchSnapshot();
-    })
+    });
+
+    it("Parses 1x1 grid", () => {
+        const initialState: string = `*`;
+
+        const grid = parseInput(initialState);
+
+        expect(printGrid(grid)).matchSnapshot();
+    });
 });
 
 
@@ -78,7 +95,7 @@ describe("Cell behaviour", () => {
 
         expect(alive).toEqual(false);
     });
-})
+});
 
 describe("Rules", () => {
     it("Live cell with fewer than two neighbours dies", () => {

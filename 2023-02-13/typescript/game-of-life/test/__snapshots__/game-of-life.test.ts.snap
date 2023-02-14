@@ -1,6 +1,19 @@
 // Vitest Snapshot v1
 
+exports[`Grid > Parses 1x1 grid 1`] = `
+"
+        *
+        "
+`;
+
 exports[`Grid > Parsing initial state 1`] = `
+"
+        ...
+        .*.
+        "
+`;
+
+exports[`Grid > Parsing initial state 2`] = `
 "
         ...
         .*.
