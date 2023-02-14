@@ -4,7 +4,7 @@ function calcMin(numbers: number[]) {
     if(numbers.length == 4)
         return 0;
     else
-        return 1;
+        return 1;sdfdsf
 }
 
 describe("Calculate statistics", () => {
