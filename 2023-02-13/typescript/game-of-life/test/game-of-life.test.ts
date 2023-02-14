@@ -19,6 +19,21 @@ function isAliveInNextStep(cell: Cell): boolean {
     return isAlive ? isAliveStayingAlive(neighbours) : isDeadBecomingAlive(neighbours);
 }
 
+describe("Grid", () => {
+    it("Parsing initial state", () => {
+        const initialState = 
+        `
+        ...
+        .*.
+        `;
+
+        const grid = parseInput(initialState);
+
+        expect(grid).matchSnapshot();
+    })
+});
+
+
 describe("Cell behaviour", () => {
     it("A living cell with two neighbour lives on", () => {
         const liveCell: Cell = {

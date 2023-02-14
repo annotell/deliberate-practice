@@ -12,3 +12,12 @@ Grid of cells
 Text visualization of Grid
 Let Grid find neighbours alive
 Main to run
+
+Grid of cells
+1. ASCII initial state
+2. Simulera steg -> ASCII
+
+Parse state
+Simulate step
+Check neighbours
+Check life status
