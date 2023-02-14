@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import {describe, expect, it} from "vitest";
 
 type Cell = {
     neighbours: number
@@ -18,11 +18,14 @@ function isDeadBecomingAlive(neighbours: number) {
 };
 
 function isAliveInNextStep(cell: Cell): boolean {
-    const { isAlive, neighbours } = cell;
+    const {isAlive, neighbours} = cell;
     return isAlive ? isAliveStayingAlive(neighbours) : isDeadBecomingAlive(neighbours);
 };
 
 function parseInput(input: string): Grid {
+    for(const c in input) {
+
+    }
     return {} as Grid;
 };
 
@@ -31,24 +34,45 @@ function simulateStep(grid: Grid): Grid {
 };
 
 function printGrid(grid: Grid): string {
-    return grid.cells[0].map((cell) => "*").join("");
-};
+    let cellPrinter = (cell: Cell) => cell.isAlive ? "*" : ".";
+    let rowPrinter = (row: Cell[]) => row.map(cellPrinter).join("");
+    return grid.cells.map(rowPrinter).join('\n');
+}
 
 describe("Print", () => {
-    it("Print 1x1", () => {
-        const cell: Cell = { isAlive: true, neighbours: 0 };
+    it("Print 1x1 living cell", () => {
+        const cell: Cell = {isAlive: true, neighbours: 0};
         const row: Cell[] = [cell];
         const cells: Cell[][] = [row];
-        const grid: Grid = { cells: cells };
+        const grid: Grid = {cells: cells};
 
         expect(printGrid(grid)).matchSnapshot();
     });
 
-    it("Print 2x1 grid", () => {
-        const cell: Cell = { isAlive: true, neighbours: 0 };
+    it("Print 2x1 living grid", () => {
+        const cell: Cell = {isAlive: true, neighbours: 0};
         const row: Cell[] = [cell, cell];
         const cells: Cell[][] = [row];
-        const grid: Grid = { cells: cells };
+        const grid: Grid = {cells: cells};
+
+        expect(printGrid(grid)).matchSnapshot();
+    });
+
+    it("Print 1x2 living grid", () => {
+        const cell: Cell = {isAlive: true, neighbours: 0};
+        const row: Cell[] = [cell];
+        const cells: Cell[][] = [row, row];
+        const grid: Grid = {cells: cells};
+
+        expect(printGrid(grid)).matchSnapshot();
+    });
+
+    it("Print grid 2x1 with one living and one dead cell", () => {
+        const livingCell: Cell = {isAlive: true, neighbours: 0};
+        const deadCell: Cell = {isAlive: false, neighbours: 0};
+        const row: Cell[] = [livingCell, deadCell];
+        const cells: Cell[][] = [row];
+        const grid: Grid = {cells: cells};
 
         expect(printGrid(grid)).matchSnapshot();
     });
@@ -62,41 +86,42 @@ describe("Print", () => {
 //     });
 // });
 
-// describe("Grid", () => {
-//     it("Parsing initial state", () => {
-//         const initialState: string =
-//         `
-//         ...
-//         .*.
-//         `;
+describe("Grid", () => {
 
-//         const grid = parseInput(initialState);
+    it("Parses 1x1 grid", () => {
+        const initialState: string = `*`;
 
-//         expect(printGrid(grid)).matchSnapshot();
-//     });
+        const grid = parseInput(initialState);
 
-//     it("Parses 1x1 grid", () => {
-//         const initialState: string = `*`;
+        expect(printGrid(grid)).matchSnapshot();
+    });
 
-//         const grid = parseInput(initialState);
+    it.skip("Parsing initial state", () => {
+        const initialState: string =
+            `
+        ...
+        .*.
+        `;
 
-//         expect(printGrid(grid)).matchSnapshot();
-//     });
+        const grid = parseInput(initialState);
 
-//     it.skip("Simulate one step", () => {
-//         const initialState: string =
-//         `
-//         ...
-//         .*.
-//         `;
+        expect(printGrid(grid)).matchSnapshot();
+    });
 
-//         const grid = parseInput(initialState);
-//         const nextGrid = simulateStep(grid);
+    it.skip("Simulate one step", () => {
+        const initialState: string =
+        `
+        ...
+        .*.
+        `;
 
-//         expect(nextGrid).matchSnapshot();
-//     });
+        const grid = parseInput(initialState);
+        const nextGrid = simulateStep(grid);
 
-// });
+        expect(nextGrid).matchSnapshot();
+    });
+
+});
 
 
 // describe("Cell behaviour", () => {
