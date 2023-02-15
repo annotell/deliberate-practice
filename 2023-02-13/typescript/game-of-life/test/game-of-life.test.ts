@@ -23,14 +23,15 @@ function isAliveInNextStep(cell: Cell): boolean {
 };
 
 function parseInput(input: string): Grid {
-    const cell: Cell = {isAlive: true, neighbours: 0};
+    const aliveCell: Cell = {isAlive: true, neighbours: 0};
+    const deadCell: Cell = {isAlive: false, neighbours: 0};
     const inputRows = input.split('\n');
     const cells: Cell[][] = [];
 
     for (const inputRow of inputRows) {
         const row: Cell[] = [];
         for (const c of inputRow) {
-            row.push(cell);
+            row.push( c === '*' ? aliveCell : deadCell);
         }
         cells.push(row);
     }
@@ -99,124 +100,88 @@ describe("Parser", () => {
 
     it("Parses 1x1 grid", () => {
         const initialState: string = `*`;
-
         const grid = parseInput(initialState);
-
         expect(printGrid(grid)).matchSnapshot();
     });
 
     it("Parses 2x1 grid", () => {
         const initialState: string = `**`;
-
         const grid = parseInput(initialState);
-
         expect(printGrid(grid)).matchSnapshot();
     });
 
     it("Parses 1x2 grid", () => {
         const initialState: string = `*\n*`;
-
         const grid = parseInput(initialState);
-
         expect(printGrid(grid)).matchSnapshot();
     });
 
     it("Parses 2x1 grid, one cell alive and one cell dead", () => {
         const initialState: string = `*.`;
-
         const grid = parseInput(initialState);
-
         expect(printGrid(grid)).matchSnapshot();
     });
 
-    it.skip("Parsing initial state", () => {
-        const initialState: string =
-            `
-        ...
-        .*.
-        `;
-
+    it("Parsing initial state", () => {
+        const initialState: string = "...\n.*.";
         const grid = parseInput(initialState);
-
         expect(printGrid(grid)).matchSnapshot();
     });
-
-    it.skip("Simulate one step", () => {
-        const initialState: string =
-        `
-        ...
-        .*.
-        `;
-
-        const grid = parseInput(initialState);
-        const nextGrid = simulateStep(grid);
-
-        expect(nextGrid).matchSnapshot();
-    });
-
 });
 
 
-// describe("Cell behaviour", () => {
-//     it("A living cell with two neighbour lives on", () => {
-//         const liveCell: Cell = {
-//             neighbours: 2,
-//             isAlive: true
-//         };
+describe("Cell behaviour", () => {
+    it("A living cell with two neighbour lives on", () => {
+        const liveCell: Cell = {
+            neighbours: 2,
+            isAlive: true
+        };
 
-//         const alive = isAliveInNextStep(liveCell);
+        const alive = isAliveInNextStep(liveCell);
 
-//         expect(alive).toEqual(true);
-//     });
+        expect(alive).toEqual(true);
+    });
 
-//     it("A dead cell with two neighbours stays dead", () => {
-//         const deadCell: Cell = {
-//             neighbours: 2,
-//             isAlive: false
-//         };
+    it("A dead cell with two neighbours stays dead", () => {
+        const deadCell: Cell = {
+            neighbours: 2,
+            isAlive: false
+        };
 
-//         const alive = isAliveInNextStep(deadCell);
+        const alive = isAliveInNextStep(deadCell);
 
-//         expect(alive).toEqual(false);
-//     });
-// });
+        expect(alive).toEqual(false);
+    });
+});
 
-// describe("Rules", () => {
-//     it("Live cell with fewer than two neighbours dies", () => {
-//         const neighbours = 1;
+describe("Rules", () => {
+    it("Live cell with fewer than two neighbours dies", () => {
+        const neighbours = 1;
+        const alive = isAliveStayingAlive(neighbours);
+        expect(alive).toEqual(false);
+    });
 
-//         const alive = isAliveStayingAlive(neighbours);
-
-//         expect(alive).toEqual(false);
-//     });
-
-//     it.each([2, 3])("Any live cell with two or three live neighbours lives", (neighbours: number) => {
-//         const alive = isAliveStayingAlive(neighbours);
-
-//         expect(alive).toEqual(true);
-//     });
+    it.each([2, 3])("Any live cell with two or three live neighbours lives", (neighbours: number) => {
+        const alive = isAliveStayingAlive(neighbours);
+        expect(alive).toEqual(true);
+    });
 
 
-//     it.each([4, 5])("Any live cell with more than three live neighbours dies", (neighbours) => {
-//         const alive = isAliveStayingAlive(neighbours);
+    it.each([4, 5])("Any live cell with more than three live neighbours dies", (neighbours) => {
+        const alive = isAliveStayingAlive(neighbours);
+        expect(alive).toEqual(false);
+    });
 
-//         expect(alive).toEqual(false);
-//     });
+    it("Any dead cell with exactly three live neighbours becomes a live cell", () => {
+        const neighbours = 3;
+        const alive = isDeadBecomingAlive(neighbours);
+        expect(alive).toEqual(true);
+    });
 
-//     it("Any dead cell with exactly three live neighbours becomes a live cell", () => {
-//         const neighbours = 3;
-
-//         const alive = isDeadBecomingAlive(neighbours);
-
-//         expect(alive).toEqual(true);
-//     });
-
-//     it("Any dead cell without three live neighbours stays dead", () => {
-//         const neighbours = 2;
-
-//         const alive = isDeadBecomingAlive(neighbours);
-
-//         expect(alive).toEqual(false);
-//     });
-// });
+    it("Any dead cell without three live neighbours stays dead", () => {
+        const neighbours = 2;
+        const alive = isDeadBecomingAlive(neighbours);
+        expect(alive).toEqual(false);
+    });
+});
 

@@ -11,6 +11,11 @@ exports[`Parser > Parses 2x1 grid 1`] = `"**"`;
 
 exports[`Parser > Parses 2x1 grid, one cell alive and one cell dead 1`] = `"*."`;
 
+exports[`Parser > Parsing initial state 1`] = `
+"...
+.*."
+`;
+
 exports[`Print > Print 1x1 living cell 1`] = `"*"`;
 
 exports[`Print > Print 1x2 living grid 1`] = `
