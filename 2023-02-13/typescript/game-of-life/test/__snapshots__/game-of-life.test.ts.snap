@@ -26,3 +26,5 @@ exports[`Print > Print 1x2 living grid 1`] = `
 exports[`Print > Print 2x1 living grid 1`] = `"**"`;
 
 exports[`Print > Print grid 2x1 with one living and one dead cell 1`] = `"*."`;
+
+exports[`Simulate > One cell one step 1`] = `"."`;

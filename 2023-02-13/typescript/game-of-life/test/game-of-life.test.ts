@@ -49,6 +49,47 @@ function printGrid(grid: Grid): string {
     return grid.cells.map(rowPrinter).join('\n');
 }
 
+describe("Simulate", () => {
+    it("One cell one step", () => {
+        const grid = parseInput("*")
+        const nextGrid = simulateStep(grid)
+        expect(printGrid(nextGrid)).toMatchSnapshot()
+    });
+});
+
+describe("Parser", () => {
+
+    it("Parses 1x1 grid", () => {
+        const initialState: string = `*`;
+        const grid = parseInput(initialState);
+        expect(printGrid(grid)).matchSnapshot();
+    });
+
+    it("Parses 2x1 grid", () => {
+        const initialState: string = `**`;
+        const grid = parseInput(initialState);
+        expect(printGrid(grid)).matchSnapshot();
+    });
+
+    it("Parses 1x2 grid", () => {
+        const initialState: string = `*\n*`;
+        const grid = parseInput(initialState);
+        expect(printGrid(grid)).matchSnapshot();
+    });
+
+    it("Parses 2x1 grid, one cell alive and one cell dead", () => {
+        const initialState: string = `*.`;
+        const grid = parseInput(initialState);
+        expect(printGrid(grid)).matchSnapshot();
+    });
+
+    it("Parsing initial state", () => {
+        const initialState: string = "...\n.*.";
+        const grid = parseInput(initialState);
+        expect(printGrid(grid)).matchSnapshot();
+    });
+});
+
 describe("Print", () => {
     it("Print 1x1 living cell", () => {
         const cell: Cell = {isAlive: true, neighbours: 0};
@@ -87,48 +128,6 @@ describe("Print", () => {
         expect(printGrid(grid)).matchSnapshot();
     });
 });
-
-// describe("Simulate", () => {
-//     it("One cell one step", () => {
-//         const grid = parseInput("*")
-//         const nextGrid = simulateStep(grid)
-//         expect(printGrid(nextGrid)).toMatchSnapshot()
-//     });
-// });
-
-describe("Parser", () => {
-
-    it("Parses 1x1 grid", () => {
-        const initialState: string = `*`;
-        const grid = parseInput(initialState);
-        expect(printGrid(grid)).matchSnapshot();
-    });
-
-    it("Parses 2x1 grid", () => {
-        const initialState: string = `**`;
-        const grid = parseInput(initialState);
-        expect(printGrid(grid)).matchSnapshot();
-    });
-
-    it("Parses 1x2 grid", () => {
-        const initialState: string = `*\n*`;
-        const grid = parseInput(initialState);
-        expect(printGrid(grid)).matchSnapshot();
-    });
-
-    it("Parses 2x1 grid, one cell alive and one cell dead", () => {
-        const initialState: string = `*.`;
-        const grid = parseInput(initialState);
-        expect(printGrid(grid)).matchSnapshot();
-    });
-
-    it("Parsing initial state", () => {
-        const initialState: string = "...\n.*.";
-        const grid = parseInput(initialState);
-        expect(printGrid(grid)).matchSnapshot();
-    });
-});
-
 
 describe("Cell behaviour", () => {
     it("A living cell with two neighbour lives on", () => {
