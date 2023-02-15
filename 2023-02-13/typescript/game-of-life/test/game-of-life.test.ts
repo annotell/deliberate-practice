@@ -25,11 +25,16 @@ function isAliveInNextStep(cell: Cell): boolean {
 function parseInput(input: string): Grid {
     const cell: Cell = {isAlive: true, neighbours: 0};
     const inputRows = input.split('\n');
-    let inputRow = inputRows[0];
-    const row: Cell[] = [];
-    for(const c of inputRow)
-        row.push(cell);
-    const cells: Cell[][] = [row];
+    const cells: Cell[][] = [];
+
+    for (const inputRow of inputRows) {
+        const row: Cell[] = [];
+        for (const c of inputRow) {
+            row.push(cell);
+        }
+        cells.push(row);
+    }
+
     return {cells: cells};
 };
 
@@ -110,6 +115,14 @@ describe("Parser", () => {
 
     it("Parses 1x2 grid", () => {
         const initialState: string = `*\n*`;
+
+        const grid = parseInput(initialState);
+
+        expect(printGrid(grid)).matchSnapshot();
+    });
+
+    it("Parses 2x1 grid, one cell alive and one cell dead", () => {
+        const initialState: string = `*.`;
 
         const grid = parseInput(initialState);
 
