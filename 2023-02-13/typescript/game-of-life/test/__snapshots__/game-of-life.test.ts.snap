@@ -29,4 +29,9 @@ exports[`Print > Print grid 2x1 with one living and one dead cell 1`] = `"*."`;
 
 exports[`Simulate > Dash shaped grid, one step 1`] = `".."`;
 
+exports[`Simulate > I shaped grid, one step 1`] = `
+".
+."
+`;
+
 exports[`Simulate > One live cell one step 1`] = `"."`;
