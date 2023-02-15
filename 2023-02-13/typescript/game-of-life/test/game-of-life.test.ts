@@ -40,7 +40,10 @@ function parseInput(input: string): Grid {
 };
 
 function simulateStep(grid: Grid): Grid {
-    return grid;
+    const cell: Cell = {isAlive: false, neighbours: 0};
+    const row: Cell[] = [cell];
+    const cells: Cell[][] = [row];
+    return {cells: cells};
 };
 
 function printGrid(grid: Grid): string {
@@ -50,10 +53,16 @@ function printGrid(grid: Grid): string {
 }
 
 describe("Simulate", () => {
-    it("One cell one step", () => {
-        const grid = parseInput("*")
-        const nextGrid = simulateStep(grid)
-        expect(printGrid(nextGrid)).toMatchSnapshot()
+    it("One live cell one step", () => {
+        const grid = parseInput("*");
+        const nextGrid = simulateStep(grid);
+        expect(printGrid(nextGrid)).toMatchSnapshot();
+    });
+
+    it("Dash shaped grid, one step", () => {
+        const grid = parseInput("**");
+        const nextGrid = simulateStep(grid);
+        expect(printGrid(nextGrid)).toMatchSnapshot();
     });
 });
 
