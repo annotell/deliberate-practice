@@ -23,10 +23,11 @@ function isAliveInNextStep(cell: Cell): boolean {
 };
 
 function parseInput(input: string): Grid {
-    for(const c in input) {
-
-    }
-    return {} as Grid;
+    const cell: Cell = {isAlive: true, neighbours: 0};
+    const row: Cell[] = [cell];
+    const cells: Cell[][] = [row];
+    const grid: Grid = {cells: cells};
+    return grid;
 };
 
 function simulateStep(grid: Grid): Grid {
@@ -90,6 +91,14 @@ describe("Grid", () => {
 
     it("Parses 1x1 grid", () => {
         const initialState: string = `*`;
+
+        const grid = parseInput(initialState);
+
+        expect(printGrid(grid)).matchSnapshot();
+    });
+
+    it("Parses 2x1 grid", () => {
+        const initialState: string = `**`;
 
         const grid = parseInput(initialState);
 

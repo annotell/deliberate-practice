@@ -1,5 +1,9 @@
 // Vitest Snapshot v1
 
+exports[`Grid > Parses 1x1 grid 1`] = `"*"`;
+
+exports[`Grid > Parses 2x1 grid 1`] = `"**"`;
+
 exports[`Print > Print 1x1 living cell 1`] = `"*"`;
 
 exports[`Print > Print 1x2 living grid 1`] = `
