@@ -41,8 +41,7 @@ function parseInput(input: string): Grid {
 
 function simulateStep(grid: Grid): Grid {
     const cell: Cell = {isAlive: false, neighbours: 0};
-    const row: Cell[] = grid.cells[0].map((_c) => cell);
-    const cells: Cell[][] = [row];
+    const cells: Cell[][] = grid.cells.map((row) => row.map((_c) => cell));
     return {cells: cells};
 };
 
@@ -53,20 +52,26 @@ function printGrid(grid: Grid): string {
 }
 
 describe("Simulate", () => {
-    it("One live cell one step", () => {
+    it("One live cell", () => {
         const grid = parseInput("*");
         const nextGrid = simulateStep(grid);
         expect(printGrid(nextGrid)).toMatchSnapshot();
     });
 
-    it("Dash shaped grid, one step", () => {
+    it("Dash shaped grid 2x1", () => {
         const grid = parseInput("**");
         const nextGrid = simulateStep(grid);
         expect(printGrid(nextGrid)).toMatchSnapshot();
     });
 
-    it("I shaped grid, one step", () => {
+    it("I shaped grid 1x2", () => {
         const grid = parseInput("*\n*");
+        const nextGrid = simulateStep(grid);
+        expect(printGrid(nextGrid)).toMatchSnapshot();
+    });
+
+    it("Dash shaped grid 3x1", () => {
+        const grid = parseInput("***");
         const nextGrid = simulateStep(grid);
         expect(printGrid(nextGrid)).toMatchSnapshot();
     });
