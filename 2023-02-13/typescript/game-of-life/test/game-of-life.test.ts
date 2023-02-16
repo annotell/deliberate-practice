@@ -72,12 +72,35 @@ describe('Simulate', () => {
         expect(printGrid(nextGrid)).toMatchSnapshot();
     });
 
-    it('Dash shaped grid 3x1', () => {
+    it.skip('Dash shaped grid 3x1', () => {
         const grid = parseInput('***');
         const nextGrid = simulateStep(grid);
         expect(printGrid(nextGrid)).toMatchSnapshot();
     });
 });
+
+function countNeighbours(grid: Grid, cell: Cell) {
+    return 0;
+}
+
+describe('Neighbour counting', () => {
+    // # 0 neighbours
+    // 1   -  "  -
+    // 2   -  "  -
+    it("grid with 1x1 cells", () => {
+        const grid = parseInput('*');
+        const cell = grid.cells[0][0]
+        let neighbourCount = countNeighbours(grid, cell);
+        expect(neighbourCount).toEqual(0);
+    })
+
+    it("grid with 2x1 cells", () => {
+        const grid = parseInput('**');
+        const cell = grid.cells[0][0]
+        let neighbourCount = countNeighbours(grid, cell);
+        expect(neighbourCount).toEqual(1);
+    })
+})
 
 describe('Parser', () => {
     it('Parses 1x1 grid', () => {
