@@ -92,49 +92,49 @@ describe('Neighbour counting', () => {
   // # 0 neighbours
   // 1   -  "  -
   // 2   -  "  -
-  it('grid with 1x1 cells, alive cell', () => {
+  it('grid 1x1, alive cell', () => {
     const grid = parseInput('*');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(0);
   });
 
-  it('grid with 2x1 cells, alive cells', () => {
+  it('grid 2x1, alive cells', () => {
     const grid = parseInput('**');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(1);
   });
 
-  it('grid with 2x1 cells, dead cells', () => {
+  it('grid 2x1, dead cells', () => {
     const grid = parseInput('..');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(0);
   });
 
-  it('grid with 2x1 cells, one alive, one dead cell', () => {
+  it('grid 2x1, one alive, one dead cell', () => {
     const grid = parseInput('*.');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(0);
   });
 
-  it('grid with 1x2 cells, alive', () => {
+  it('grid 1x2, alive', () => {
     const grid = parseInput('*\n*');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(1);
   });
 
-  it('grid with 1x2 cells, one alive, one dead', () => {
+  it('grid 1x2, one alive, one dead', () => {
     const grid = parseInput('*\n.');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(0);
   });
 
-  it('grid with 3x1 cells, alive, dead, alive', () => {
+  it('grid 3x1, alive, dead, alive', () => {
     const grid = parseInput('*.*');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
