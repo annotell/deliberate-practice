@@ -31,6 +31,23 @@ exports[`Simulate > Dash shaped grid 2x1 1`] = `".."`;
 
 exports[`Simulate > Dash shaped grid 3x1 1`] = `".*."`;
 
+exports[`Simulate > Grid 2x2, one dead 1`] = `
+"**
+**"
+`;
+
+exports[`Simulate > Grid 3x2, one dead 1`] = `
+"**
+..
+**"
+`;
+
+exports[`Simulate > Grid 3x2, one dead, 2 steps 1`] = `
+"..
+..
+.."
+`;
+
 exports[`Simulate > I shaped grid 1x2 1`] = `
 ".
 ."
