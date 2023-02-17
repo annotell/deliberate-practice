@@ -9,7 +9,7 @@ import {
   parseInput,
   printGrid,
   simulateStep,
-} from '../src/abc';
+} from '../src/functions';
 
 describe('Simulate', () => {
   it('One live cell', () => {
