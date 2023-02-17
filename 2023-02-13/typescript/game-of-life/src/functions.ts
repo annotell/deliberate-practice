@@ -43,15 +43,15 @@ export function parseInput(input: string): Grid {
 
 export function simulateStep(grid: Grid): Grid {
   const cells: Cell[][] = grid.cells.map(row =>
-    row.map(cell => {
+    row.map((cell): Cell => {
       const neighbours = countNeighbours(grid, cell);
       const tempCell = {
         id: { x: cell.id.x, y: cell.id.y },
         neighbours,
         isAlive: cell.isAlive,
-      } as Cell;
+      };
       const isAlive = isAliveInNextStep(tempCell);
-      return { id: { x: cell.id.x, y: cell.id.y }, neighbours, isAlive } as Cell;
+      return { id: { x: cell.id.x, y: cell.id.y }, neighbours, isAlive };
     })
   );
   return { cells: cells };
