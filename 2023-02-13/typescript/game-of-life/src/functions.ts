@@ -1,5 +1,4 @@
 export type Cell = {
-  neighbours: number;
   isAlive: boolean;
   id: { x: number; y: number };
 };
@@ -31,8 +30,8 @@ export function parseInput(input: string): Grid {
       const value = inputRows[rowIndex].at(columnIndex);
       row.push(
         value === '*'
-          ? { isAlive: true, neighbours: 0, id: { x: rowIndex, y: columnIndex } }
-          : { isAlive: false, neighbours: 0, id: { x: rowIndex, y: columnIndex } }
+          ? { isAlive: true, id: { x: rowIndex, y: columnIndex } }
+          : { isAlive: false, id: { x: rowIndex, y: columnIndex } }
       );
     }
     cells.push(row);
@@ -51,7 +50,7 @@ export function simulateStep(grid: Grid): Grid {
         isAlive: cell.isAlive,
       };
       const isAlive = isAliveInNextStep(tempCell, neighbours);
-      return { id: { x: cell.id.x, y: cell.id.y }, neighbours, isAlive };
+      return { id: { x: cell.id.x, y: cell.id.y }, isAlive };
     })
   );
   return { cells: cells };

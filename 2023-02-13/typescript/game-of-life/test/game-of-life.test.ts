@@ -151,7 +151,7 @@ describe('Parser', () => {
 
 describe('Print', () => {
   it('Print 1x1 living cell', () => {
-    const cell: Cell = { isAlive: true, neighbours: 0, id: { x: 0, y: 0 } };
+    const cell: Cell = { isAlive: true, id: { x: 0, y: 0 } };
     const row: Cell[] = [cell];
     const cells: Cell[][] = [row];
     const grid: Grid = { cells: cells };
@@ -160,7 +160,7 @@ describe('Print', () => {
   });
 
   it('Print 2x1 living grid', () => {
-    const cell: Cell = { isAlive: true, neighbours: 0, id: { x: 0, y: 0 } };
+    const cell: Cell = { isAlive: true, id: { x: 0, y: 0 } };
     const row: Cell[] = [cell, cell];
     const cells: Cell[][] = [row];
     const grid: Grid = { cells: cells };
@@ -169,7 +169,7 @@ describe('Print', () => {
   });
 
   it('Print 1x2 living grid', () => {
-    const cell: Cell = { isAlive: true, neighbours: 0, id: { x: 0, y: 0 } };
+    const cell: Cell = { isAlive: true, id: { x: 0, y: 0 } };
     const row: Cell[] = [cell];
     const cells: Cell[][] = [row, row];
     const grid: Grid = { cells: cells };
@@ -180,12 +180,12 @@ describe('Print', () => {
   it('Print grid 2x1 with one living and one dead cell', () => {
     const livingCell: Cell = {
       isAlive: true,
-      neighbours: 0,
+
       id: { x: 0, y: 0 },
     };
     const deadCell: Cell = {
       isAlive: false,
-      neighbours: 0,
+
       id: { x: 0, y: 0 },
     };
     const row: Cell[] = [livingCell, deadCell];
@@ -201,7 +201,6 @@ describe('Cell behaviour', () => {
     const neighbours = 2;
     const liveCell: Cell = {
       isAlive: true,
-      neighbours,
       id: { x: 0, y: 0 },
     };
 
@@ -213,7 +212,6 @@ describe('Cell behaviour', () => {
   it('A dead cell with two neighbours stays dead', () => {
     const neighbours = 2;
     const deadCell: Cell = {
-      neighbours,
       isAlive: false,
       id: { x: 0, y: 0 },
     };
