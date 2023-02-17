@@ -18,19 +18,19 @@ describe('Simulate', () => {
     expect(printGrid(nextGrid)).toMatchSnapshot();
   });
 
-  it('Dash shaped grid 2x1', () => {
+  it('Dash shaped grid 1x2', () => {
     const grid = parseInput('**');
     const nextGrid = simulateStep(grid);
     expect(printGrid(nextGrid)).toMatchSnapshot();
   });
 
-  it('I shaped grid 1x2', () => {
+  it('I shaped grid 2x1', () => {
     const grid = parseInput('*\n*');
     const nextGrid = simulateStep(grid);
     expect(printGrid(nextGrid)).toMatchSnapshot();
   });
 
-  it('Dash shaped grid 3x1', () => {
+  it('Dash shaped grid 1x3', () => {
     const grid = parseInput('***');
     const nextGrid = simulateStep(grid);
     expect(printGrid(nextGrid)).toMatchSnapshot();
@@ -67,42 +67,42 @@ describe('Neighbour counting', () => {
     expect(neighbourCount).toEqual(0);
   });
 
-  it('grid 2x1, alive cells', () => {
+  it('grid 1x2, alive cells', () => {
     const grid = parseInput('**');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(1);
   });
 
-  it('grid 2x1, dead cells', () => {
+  it('grid 1x2, dead cells', () => {
     const grid = parseInput('..');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(0);
   });
 
-  it('grid 2x1, one alive, one dead cell', () => {
+  it('grid 1x2, one alive, one dead cell', () => {
     const grid = parseInput('*.');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(0);
   });
 
-  it('grid 1x2, alive', () => {
+  it('grid 2x1, alive', () => {
     const grid = parseInput('*\n*');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(1);
   });
 
-  it('grid 1x2, one alive, one dead', () => {
+  it('grid 2x1, one alive, one dead', () => {
     const grid = parseInput('*\n.');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(0);
   });
 
-  it('grid 3x1, alive, dead, alive', () => {
+  it('grid 1x3, alive, dead, alive', () => {
     const grid = parseInput('*.*');
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
@@ -124,19 +124,19 @@ describe('Parser', () => {
     expect(printGrid(grid)).matchSnapshot();
   });
 
-  it('Parses 2x1 grid', () => {
+  it('Parses 1x2 grid', () => {
     const initialState = '**';
     const grid = parseInput(initialState);
     expect(printGrid(grid)).matchSnapshot();
   });
 
-  it('Parses 1x2 grid', () => {
+  it('Parses 2x1 grid', () => {
     const initialState = '*\n*';
     const grid = parseInput(initialState);
     expect(printGrid(grid)).matchSnapshot();
   });
 
-  it('Parses 2x1 grid, one cell alive and one cell dead', () => {
+  it('Parses 1x2 grid, one cell alive and one cell dead', () => {
     const initialState = '*.';
     const grid = parseInput(initialState);
     expect(printGrid(grid)).matchSnapshot();
@@ -159,7 +159,7 @@ describe('Print', () => {
     expect(printGrid(grid)).matchSnapshot();
   });
 
-  it('Print 2x1 living grid', () => {
+  it('Print 1x2 living grid', () => {
     const cell: Cell = { isAlive: true, id: { x: 0, y: 0 } };
     const row: Cell[] = [cell, cell];
     const cells: Cell[][] = [row];
@@ -168,7 +168,7 @@ describe('Print', () => {
     expect(printGrid(grid)).matchSnapshot();
   });
 
-  it('Print 1x2 living grid', () => {
+  it('Print 2x1 living grid', () => {
     const cell: Cell = { isAlive: true, id: { x: 0, y: 0 } };
     const row: Cell[] = [cell];
     const cells: Cell[][] = [row, row];
@@ -177,7 +177,7 @@ describe('Print', () => {
     expect(printGrid(grid)).matchSnapshot();
   });
 
-  it('Print grid 2x1 with one living and one dead cell', () => {
+  it('Print grid 1x2 with one living and one dead cell', () => {
     const livingCell: Cell = {
       isAlive: true,
 

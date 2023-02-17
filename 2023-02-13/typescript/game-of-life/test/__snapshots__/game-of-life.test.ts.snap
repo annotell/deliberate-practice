@@ -2,14 +2,14 @@
 
 exports[`Parser > Parses 1x1 grid 1`] = `"*"`;
 
-exports[`Parser > Parses 1x2 grid 1`] = `
+exports[`Parser > Parses 1x2 grid 1`] = `"**"`;
+
+exports[`Parser > Parses 1x2 grid, one cell alive and one cell dead 1`] = `"*."`;
+
+exports[`Parser > Parses 2x1 grid 1`] = `
 "*
 *"
 `;
-
-exports[`Parser > Parses 2x1 grid 1`] = `"**"`;
-
-exports[`Parser > Parses 2x1 grid, one cell alive and one cell dead 1`] = `"*."`;
 
 exports[`Parser > Parsing initial state 1`] = `
 "...
@@ -18,18 +18,18 @@ exports[`Parser > Parsing initial state 1`] = `
 
 exports[`Print > Print 1x1 living cell 1`] = `"*"`;
 
-exports[`Print > Print 1x2 living grid 1`] = `
+exports[`Print > Print 1x2 living grid 1`] = `"**"`;
+
+exports[`Print > Print 2x1 living grid 1`] = `
 "*
 *"
 `;
 
-exports[`Print > Print 2x1 living grid 1`] = `"**"`;
+exports[`Print > Print grid 1x2 with one living and one dead cell 1`] = `"*."`;
 
-exports[`Print > Print grid 2x1 with one living and one dead cell 1`] = `"*."`;
+exports[`Simulate > Dash shaped grid 1x2 1`] = `".."`;
 
-exports[`Simulate > Dash shaped grid 2x1 1`] = `".."`;
-
-exports[`Simulate > Dash shaped grid 3x1 1`] = `".*."`;
+exports[`Simulate > Dash shaped grid 1x3 1`] = `".*."`;
 
 exports[`Simulate > Grid 2x2, one dead 1`] = `
 "**
@@ -48,7 +48,7 @@ exports[`Simulate > Grid 3x2, one dead, 2 steps 1`] = `
 .."
 `;
 
-exports[`Simulate > I shaped grid 1x2 1`] = `
+exports[`Simulate > I shaped grid 2x1 1`] = `
 ".
 ."
 `;
