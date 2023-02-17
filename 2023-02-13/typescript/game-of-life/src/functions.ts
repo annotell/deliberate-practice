@@ -61,20 +61,18 @@ export function printGrid(grid: Grid): string {
   return grid.cells.map(rowPrinter).join('\n');
 }
 
+function isWithinRange(cell: number, neighbour: number): boolean {
+  return cell - 1 <= neighbour && neighbour <= cell + 1;
+}
+
 export function countNeighbours(grid: Grid, currentCell: Cell) {
   const aliveCells = grid.cells.map(row => {
     return row.filter(cell => {
-      const cellWithinNeighbourDistanceForRow =
-        currentCell.id.x - 1 <= cell.id.x && cell.id.x <= currentCell.id.x + 1;
-      const cellWithinNeighbourDistanceForColumn =
-        currentCell.id.y - 1 <= cell.id.y && cell.id.y <= currentCell.id.y + 1;
+      if (cell === currentCell) return false;
+      if (!isWithinRange(currentCell.id.x, cell.id.x)) return false;
+      if (!isWithinRange(currentCell.id.y, cell.id.y)) return false;
 
-      if (cellWithinNeighbourDistanceForRow) {
-        if (cellWithinNeighbourDistanceForColumn) {
-          return cell !== currentCell ? cell.isAlive : false;
-        }
-      }
-      return false;
+      return cell.isAlive;
     });
   });
   return aliveCells.map(row => row.length).reduce((a, b) => a + b);
