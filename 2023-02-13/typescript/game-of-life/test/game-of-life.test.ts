@@ -56,9 +56,21 @@ function printGrid(grid: Grid): string {
 }
 
 function countNeighbours(grid: Grid, currentCell: Cell) {
-  const aliveCells = grid.cells.map(row =>
-    row.filter(cell => (cell !== currentCell ? cell.isAlive : false))
-  );
+  const aliveCells = grid.cells.map(row => {
+    return row.filter(cell => {
+      const cellWithinNeighbourDistanceForRow =
+        currentCell.id.x - 1 <= cell.id.x && cell.id.x <= currentCell.id.x + 1;
+      const cellWithinNeighbourDistanceForColumn =
+        currentCell.id.y - 1 <= cell.id.y && cell.id.y <= currentCell.id.y + 1;
+
+      if (cellWithinNeighbourDistanceForRow) {
+        if (cellWithinNeighbourDistanceForColumn) {
+          return cell !== currentCell ? cell.isAlive : false;
+        }
+      }
+      return false;
+    });
+  });
   return aliveCells.map(row => row.length).reduce((a, b) => a + b);
 }
 
@@ -139,6 +151,13 @@ describe('Neighbour counting', () => {
     const cell = grid.cells[0][0];
     const neighbourCount = countNeighbours(grid, cell);
     expect(neighbourCount).toEqual(0);
+  });
+
+  it('grid 3x3, alive line in middle', () => {
+    const grid = parseInput('.*.\n.*.\n.*.');
+    const cell = grid.cells[0][0];
+    const neighbourCount = countNeighbours(grid, cell);
+    expect(neighbourCount).toEqual(2);
   });
 });
 
