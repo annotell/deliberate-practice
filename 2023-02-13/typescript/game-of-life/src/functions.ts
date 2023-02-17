@@ -16,8 +16,8 @@ export function isDeadBecomingAlive(neighbours: number) {
   return neighbours === 3;
 }
 
-export function isAliveInNextStep(cell: Cell): boolean {
-  const { isAlive, neighbours } = cell;
+export function isAliveInNextStep(cell: Cell, neighbours: number): boolean {
+  const { isAlive } = cell;
   return isAlive ? isAliveStayingAlive(neighbours) : isDeadBecomingAlive(neighbours);
 }
 
@@ -50,7 +50,7 @@ export function simulateStep(grid: Grid): Grid {
         neighbours,
         isAlive: cell.isAlive,
       };
-      const isAlive = isAliveInNextStep(tempCell);
+      const isAlive = isAliveInNextStep(tempCell, neighbours);
       return { id: { x: cell.id.x, y: cell.id.y }, neighbours, isAlive };
     })
   );

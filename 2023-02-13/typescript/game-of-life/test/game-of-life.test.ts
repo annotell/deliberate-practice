@@ -198,25 +198,27 @@ describe('Print', () => {
 
 describe('Cell behaviour', () => {
   it('A living cell with two neighbour lives on', () => {
+    const neighbours = 2;
     const liveCell: Cell = {
-      neighbours: 2,
       isAlive: true,
+      neighbours,
       id: { x: 0, y: 0 },
     };
 
-    const alive = isAliveInNextStep(liveCell);
+    const alive = isAliveInNextStep(liveCell, neighbours);
 
     expect(alive).toEqual(true);
   });
 
   it('A dead cell with two neighbours stays dead', () => {
+    const neighbours = 2;
     const deadCell: Cell = {
-      neighbours: 2,
+      neighbours,
       isAlive: false,
       id: { x: 0, y: 0 },
     };
 
-    const alive = isAliveInNextStep(deadCell);
+    const alive = isAliveInNextStep(deadCell, neighbours);
 
     expect(alive).toEqual(false);
   });
