@@ -28,11 +28,8 @@ export function parseInput(input: string): Grid {
     const row: Cell[] = [];
     for (let columnIndex = 0; columnIndex < inputRows[rowIndex].length; columnIndex++) {
       const value = inputRows[rowIndex].at(columnIndex);
-      row.push(
-        value === '*'
-          ? { isAlive: true, id: { x: rowIndex, y: columnIndex } }
-          : { isAlive: false, id: { x: rowIndex, y: columnIndex } }
-      );
+      const id = { x: rowIndex, y: columnIndex };
+      row.push(value === '*' ? { isAlive: true, id: id } : { isAlive: false, id: id });
     }
     cells.push(row);
   }
@@ -44,13 +41,15 @@ export function simulateStep(grid: Grid): Grid {
   const cells: Cell[][] = grid.cells.map(row =>
     row.map((cell): Cell => {
       const neighbours = countNeighbours(grid, cell);
-      const tempCell = {
-        id: { x: cell.id.x, y: cell.id.y },
-        neighbours,
-        isAlive: cell.isAlive,
-      };
-      const isAlive = isAliveInNextStep(tempCell, neighbours);
-      return { id: { x: cell.id.x, y: cell.id.y }, isAlive };
+      const id = { x: cell.id.x, y: cell.id.y };
+      const isAlive = isAliveInNextStep(
+        {
+          isAlive: cell.isAlive,
+          id: id,
+        },
+        neighbours
+      );
+      return { id: id, isAlive: isAlive };
     })
   );
   return { cells: cells };
